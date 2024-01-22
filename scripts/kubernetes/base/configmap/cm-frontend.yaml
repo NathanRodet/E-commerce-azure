@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-frontend
+  namespace: ns-app
+data:
+  PORT_FRONTEND: "8080"
+  PRODUCT_CATALOG_SERVICE_ADDR: "productcatalogservice:3550"
+  SHIPPING_SERVICE_ADDR: "shippingservice:50051"
+  CART_SERVICE_ADDR: "cartservice:7070"
+  CURRENCY_SERVICE_ADDR: "currencyservice:7000"
+  CHECKOUT_SERVICE_ADDR: "checkoutservice:5050"
+  RECOMMENDATION_SERVICE_ADDR: "recommendationservice:8080"
+  AD_SERVICE_ADDR: "adservice:9555"
+  EMAIL_SERVICE_ADDR: "emailservice:5000"
+  PAYMENT_SERVICE_ADDR: "paymentservice:50052"

@@ -1,0 +1,14 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cartservice
+  namespace: ns-app
+spec:
+  selector:
+    app: cartservice
+  ports:
+    - protocol: TCP
+      port: 7070
+      targetPort: 7070
+  type: ClusterIP

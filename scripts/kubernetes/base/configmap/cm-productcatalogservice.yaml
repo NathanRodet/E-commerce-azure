@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-productcatalogservice
+  namespace: ns-app
+data:
+  PORT: "3550"

@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: currencyservice
+  namespace: ns-app
+spec:
+  selector:
+    app: currencyservice
+  ports:
+    - protocol: TCP
+      port: 7000
+      targetPort: 7000
+  type: ClusterIP

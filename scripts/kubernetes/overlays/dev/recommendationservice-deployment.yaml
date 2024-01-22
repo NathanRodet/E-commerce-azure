@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice
+spec:
+  selector:
+    matchLabels:
+      app: recommendationservice
+  template:
+    metadata:
+      labels:
+        app: recommendationservice
+    spec:
+      containers:
+        - name: recommendationservice
+          image: acrprj3devnortheurope001.azurecr.io/recommendationservice:latest
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "192Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailservice
+spec:
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
+        app: emailservice
+    spec:
+      containers:
+        - name: emailservice
+          image: acrprj3prdnortheurope001.azurecr.io/emailservice:latest
+          resources:
+            limits:
+              cpu: "350m"
+              memory: "250Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"

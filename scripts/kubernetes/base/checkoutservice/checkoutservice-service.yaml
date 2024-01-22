@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: checkoutservice
+  namespace: ns-app
+spec:
+  selector:
+    app: checkoutservice
+  ports:
+  - protocol: TCP
+    port: 5050
+    targetPort: 5050
+  type: ClusterIP

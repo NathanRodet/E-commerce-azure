@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+spec:
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      containers:
+        - name: paymentservice
+          image: acrprj3devnortheurope001.azurecr.io/paymentservice:latest
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "192Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

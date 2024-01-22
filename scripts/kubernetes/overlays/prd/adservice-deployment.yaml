@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adservice
+spec:
+  selector:
+    matchLabels:
+      app: adservice
+  template:
+    metadata:
+      labels:
+        app: adservice
+    spec:
+      containers:
+        - name: adservice
+          image: acrprj3prdnortheurope001.azurecr.io/adservice:latest
+          resources:
+            limits:
+              cpu: "350m"
+              memory: "250Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"

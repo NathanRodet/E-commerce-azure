@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: paymentservice
+  namespace: ns-app
+spec:
+  selector:
+    app: paymentservice
+  ports:
+    - protocol: TCP
+      port: 50052
+      targetPort: 50051
+  type: ClusterIP
+---
+

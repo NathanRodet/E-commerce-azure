@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-rediscart
+  namespace: ns-app
+data:
+  PORT: "6379"

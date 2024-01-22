@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice
+spec:
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      labels:
+        app: currencyservice
+    spec:
+      containers:
+        - name: currencyservice
+          image: acrprj3prdnortheurope001.azurecr.io/currencyservice:latest
+          resources:
+            limits:
+              cpu: "350m"
+              memory: "250Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"

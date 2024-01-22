@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: acrprj3prdnortheurope001.azurecr.io/frontend:latest
+          resources:
+            limits:
+              cpu: "350m"
+              memory: "250Mi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"

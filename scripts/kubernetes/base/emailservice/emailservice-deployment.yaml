@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailservice
+  namespace: ns-app
+  labels:
+    app: emailservice
+spec:
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
+        app: emailservice
+    spec:
+      containers:
+        - name: emailservice
+          envFrom:
+            - configMapRef:
+                name: cm-frontend
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            grpc:
+              port: 8080
+          livenessProbe:
+            grpc:
+              port: 8080

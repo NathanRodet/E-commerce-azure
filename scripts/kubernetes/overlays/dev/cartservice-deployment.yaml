@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartservice
+spec:
+  selector:
+    matchLabels:
+      app: cartservice
+  template:
+    metadata:
+      labels:
+        app: cartservice
+    spec:
+      containers:
+        - name: cartservice
+          image: acrprj3devnortheurope001.azurecr.io/cartservice:latest
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "192Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

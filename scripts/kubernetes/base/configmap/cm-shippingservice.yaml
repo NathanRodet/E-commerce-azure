@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-shippingservice
+  namespace: ns-app
+data:
+  PORT: "50051"

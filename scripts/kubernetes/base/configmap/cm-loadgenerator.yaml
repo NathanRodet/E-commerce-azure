@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-loadgenerator
+  namespace: ns-app
+data:
+  LOADGENERATOR_ADDR: "loadgenerator:80"

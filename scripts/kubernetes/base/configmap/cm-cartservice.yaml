@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-cartservice
+  namespace: ns-app
+data:
+  REDIS_ADDR: "redis-cart:6379"

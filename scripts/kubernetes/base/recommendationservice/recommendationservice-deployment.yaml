@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice
+  namespace: ns-app
+  labels:
+    app: recommendationservice
+spec:
+  selector:
+    matchLabels:
+      app: recommendationservice
+  template:
+    metadata:
+      labels:
+        app: recommendationservice
+    spec:
+      containers:
+        - name: recommendationservice
+          envFrom:
+            - configMapRef:
+                name: cm-frontend
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            grpc:
+              port: 8080
+          livenessProbe:
+            grpc:
+              port: 8080
+---
+

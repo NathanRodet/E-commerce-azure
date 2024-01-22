@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+spec:
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+    spec:
+      containers:
+        - name: productcatalogservice
+          image: acrprj3devnortheurope001.azurecr.io/productcatalogservice:latest
+          resources:
+            limits:
+              cpu: "150m"
+              memory: "192Mi"
+            requests:
+              cpu: "50m"
+              memory: "64Mi"

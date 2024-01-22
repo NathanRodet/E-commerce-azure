@@ -1,0 +1,116 @@
+version: "3.3"
+services: 
+  ### --- ###
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  ### --- ###
+  adservice:
+    build: ./adservice/.
+    environment: 
+      - PORT=9555
+    ports:
+      - "9555:9555"
+  ### --- ###
+  cartservice:
+    build: ./cartservice/src/.
+    ports:
+      - "7070:7070"
+    environment: 
+      - REDIS_ADDR=redis:6379
+    depends_on: 
+      - redis
+  ### --- ###
+  checkoutservice:
+    build: ./checkoutservice/.
+    ports:
+      - "5050:5050"
+    environment: 
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+      - SHIPPING_SERVICE_ADDR=shippingservice:50051
+      - CART_SERVICE_ADDR=cartservice:7070
+      - CURRENCY_SERVICE_ADDR=currencyservice:7000
+      - EMAIL_SERVICE_ADDR=emailservice:5000
+      - PAYMENT_SERVICE_ADDR=paymentservice:50052
+    depends_on: 
+      - paymentservice
+      - emailservice
+      - currencyservice
+      - cartservice
+      - shippingservice
+      - productcatalogservice
+  ### --- ### 
+  currencyservice:
+    build: ./currencyservice/.
+    environment: 
+      - PORT=7000
+    ports:
+      - "7000:7000"
+  ### --- ###     
+  emailservice:
+    build: ./emailservice/.
+    environment: 
+      - PORT=8080
+    ports:
+      - "5000:8080"
+  ### --- ###
+  frontend:
+    build: ./frontend/.
+    environment: 
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+      - SHIPPING_SERVICE_ADDR=shippingservice:50051
+      - CART_SERVICE_ADDR=cartservice:7070
+      - CURRENCY_SERVICE_ADDR=currencyservice:7000
+      - CHECKOUT_SERVICE_ADDR=checkoutservice:5050
+      - RECOMMENDATION_SERVICE_ADDR=recommendationservice:8080
+      - AD_SERVICE_ADDR=adservice:9555
+      - PORT=8080
+    depends_on: 
+      - adservice
+      - recommendationservice
+      - checkoutservice
+      - currencyservice
+      - cartservice
+      - shippingservice
+      - productcatalogservice
+    ports:
+      - "80:8080"
+  ### --- ###
+  loadgenerator:
+    build: ./loadgenerator/.
+    environment:
+      - FRONTEND_ADDR=frontend:80
+    depends_on: 
+      - frontend
+  ### --- ###
+  paymentservice:
+    build: ./paymentservice/.
+    environment: 
+      - PORT=50051
+    ports:
+      - "50052:50051"
+  ### --- ###
+  productcatalogservice:
+    build: ./productcatalogservice/.
+    environment: 
+      - PORT=3550
+    ports:
+      - "3550:3550"
+  ### --- ###
+  recommendationservice:
+    build: ./recommendationservice/.
+    environment: 
+      - PORT=8080
+      - PRODUCT_CATALOG_SERVICE_ADDR=productcatalogservice:3550
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - productcatalogservice
+  ### --- ###
+  shippingservice:
+    build: ./shippingservice/.
+    environment: 
+      - PORT=50051    
+    ports:
+      - "50051:50051"

@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: emailservice
+  namespace: ns-app
+spec:
+  selector:
+    app: emailservice
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 8080
+  type: ClusterIP
+

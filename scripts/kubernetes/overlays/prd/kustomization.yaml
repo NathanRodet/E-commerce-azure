@@ -1,0 +1,55 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  - path: adservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: adservice
+  - path: cartservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: cartservice
+  - path: checkoutservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: checkoutservice
+  - path: currencyservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: currencyservice
+  - path: emailservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: emailservice
+  - path: frontend-deployment.yaml
+    target:
+      kind: Deployment
+      name: frontend
+  - path: loadgenerator-deployment.yaml
+    target:
+      kind: Deployment
+      name: loadgenerator
+  - path: paymentservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: paymentservice
+  - path: productcatalogservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: productcatalogservice
+  - path: recommendationservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: recommendationservice
+  - path: shippingservice-deployment.yaml
+    target:
+      kind: Deployment
+      name: shippingservice
+  - path: redis-cart-deployment.yaml
+    target:
+      kind: Deployment
+      name: redis-cart

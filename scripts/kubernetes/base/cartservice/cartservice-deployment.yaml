@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartservice
+  namespace: ns-app
+  labels:
+    app: cartservice
+spec:
+  selector:
+    matchLabels:
+      app: cartservice
+  template:
+    metadata:
+      labels:
+        app: cartservice
+    spec:
+      containers:
+        - name: cartservice
+          envFrom:
+            - configMapRef:
+                name: cm-cartservice
+          ports:
+            - containerPort: 7070
+          readinessProbe:
+            initialDelaySeconds: 10
+            grpc:
+              port: 7070
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            grpc:
+              port: 7070

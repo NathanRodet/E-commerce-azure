@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: adservice
+  namespace: ns-services
+spec:
+  selector:
+    app: adservice
+  ports:
+  - protocol: TCP
+    port: 9555
+    targetPort: 9555
+  type: ClusterIP

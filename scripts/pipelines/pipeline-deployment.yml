@@ -1,0 +1,240 @@
+trigger:
+  - main
+  - develop
+  - feature/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+
+# From Scripts
+
+# Az
+- job: az
+  steps:
+
+  - task: CopyFiles@2
+    displayName: 'Copy terraform files to artifacts'
+    inputs:
+      SourceFolder: 'scripts/az'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/az'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish terraform Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/az'
+      ArtifactName: 'az'
+      publishLocation: 'Container'
+
+# Terraform
+- job: terraform
+  steps:
+
+  - task: CopyFiles@2
+    displayName: 'Copy terraform files to artifacts'
+    inputs:
+      SourceFolder: 'scripts/terraform'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/terraform'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish terraform Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/terraform'
+      ArtifactName: 'terraform'
+      publishLocation: 'Container'
+
+# Kubernetes
+- job: kubernetes
+  steps:
+
+  - task: CopyFiles@2
+    displayName: 'Copy kubernetes files to artifacts'
+    inputs:
+      SourceFolder: 'scripts/kubernetes'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/kubernetes'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish kubernetes Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/kubernetes'
+      ArtifactName: 'kubernetes'
+      publishLocation: 'Container'
+
+# From Sources
+
+# Ad Service
+- job: adservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy adservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/adservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/adservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish adservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/adservice'
+      ArtifactName: 'adservice'
+      publishLocation: 'Container'
+
+# Cart Service
+- job: cartservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy cartservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/cartservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/cartservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish cartservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/cartservice'
+      ArtifactName: 'cartservice'
+      publishLocation: 'Container'
+
+# Checkout Service
+- job: checkoutservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy checkoutservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/checkoutservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/checkoutservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish checkoutservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/checkoutservice'
+      ArtifactName: 'checkoutservice'
+      publishLocation: 'Container'
+
+# Currency Service
+- job: currencyservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy currencyservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/currencyservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/currencyservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish currencyservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/currencyservice'
+      ArtifactName: 'currencyservice'
+      publishLocation: 'Container'
+
+# Email Service
+- job: emailservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy emailservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/emailservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/emailservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish emailservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/emailservice'
+      ArtifactName: 'emailservice'
+      publishLocation: 'Container'
+
+# Frontend Service
+- job: frontend
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy frontend files to artifacts'
+    inputs:
+      SourceFolder: 'sources/frontend'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/frontend'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish frontend Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend'
+      ArtifactName: 'frontend'
+      publishLocation: 'Container'
+
+# LoadGenerator Service
+- job: loadgenerator
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy loadgenerator files to artifacts'
+    inputs:
+      SourceFolder: 'sources/loadgenerator'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/loadgenerator'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish loadgenerator Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/loadgenerator'
+      ArtifactName: 'loadgenerator'
+      publishLocation: 'Container'
+      
+# Payment Service
+- job: paymentservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy paymentservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/paymentservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/paymentservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish paymentservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/paymentservice'
+      ArtifactName: 'paymentservice'
+      publishLocation: 'Container'
+
+# Product Catalog Service
+- job: productcatalogservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy productcatalogservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/productcatalogservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/productcatalogservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish productcatalogservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/productcatalogservice'
+      ArtifactName: 'productcatalogservice'
+      publishLocation: 'Container'
+
+# Recommendation Service
+- job: recommendationservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy recommendationservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/recommendationservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/recommendationservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish recommendationservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/recommendationservice'
+      ArtifactName: 'recommendationservice'
+      publishLocation: 'Container'
+
+# Shipping Service
+- job: shippingservice
+  steps:
+  - task: CopyFiles@2
+    displayName: 'Copy shippingservice files to artifacts'
+    inputs:
+      SourceFolder: 'sources/shippingservice'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/shippingservice'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish shippingservice Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/shippingservice'
+      ArtifactName: 'shippingservice'
+      publishLocation: 'Container'
